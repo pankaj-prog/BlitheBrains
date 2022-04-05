@@ -1,0 +1,23 @@
+.navigation-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+.nav-item-active {
+  background-color: var(--COLOR-SECONDARY-V2);
+  border-left: 4px solid var(--COLOR-PRIMARY-V2);
+  border-radius: 0 1rem 1rem 0;
+}
+
+.nav-item span {
+  flex-grow: 1;
+}

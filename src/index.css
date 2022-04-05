@@ -1,0 +1,75 @@
+@import url("https://adaptiveui.netlify.app/src/components/ui-lib.css");
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap");
+
+/* reset */
+:root {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* utils */
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.gutter-bottom-8 {
+  margin-bottom: 0.5rem;
+}
+
+.gutter-bottom-16 {
+  margin-bottom: 1rem;
+}
+
+.gutter-bottom-24 {
+  margin-bottom: 1.5rem;
+}
+
+.gutter-bottom-32 {
+  margin-bottom: 2rem;
+}
+
+/* buttons */
+
+.btn {
+  transition: background-color 0.1s ease;
+}
+
+.btn-solid-primary:hover {
+  background-color: var(--COLOR-PRIMARY-V2);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--COLOR-SECONDARY-V2);
+}
+
+.btn-outline-primary {
+  background-color: var(--COLOR-SECONDARY);
+}
+
+/* text color blue */
+.text-link {
+  color: var(--CTA-COLOR);
+}
+
+/* body */
+
+body {
+  font-family: mukta;
+}
+
+/* app */
+
+.app {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  gap: 1rem;
+  min-height: 100vh;
+  background-color: var(--COLOR-SECONDARY-V2);
+}
