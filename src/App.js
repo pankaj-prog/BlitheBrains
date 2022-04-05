@@ -1,5 +1,9 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Sidebar } from "./components/";
+
+import { useLocation, useNavigate } from "react-router-dom";
+
 import {
   Explore,
   History,
@@ -13,12 +17,18 @@ import {
 } from "./pages";
 
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    location.pathname == "/" ? navigate("/home") : undefined;
+  }, [location]);
+
   return (
     <div className="app">
       <Sidebar />
       <main className="main-content">
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/history" element={<History />} />
