@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Sidebar.css";
 import { FaSearch } from "react-icons/fa";
 
-import { images } from "../../assets/Images";
+import { images } from "../../assets/";
 import NavigationMenu from "./components/NavigationMenu";
 
 const Sidebar = () => {
@@ -16,10 +16,10 @@ const Sidebar = () => {
         </h2>
         <button
           onClick={() => setShowUserWrapper(!showUserWrapper)}
-          class="avatar avatar-sm avatar-round"
+          className="avatar avatar-sm avatar-round"
         >
           <img
-            class="responsive-img"
+            className="responsive-img"
             src={images.defaultAvatar}
             alt="default avatar"
           />

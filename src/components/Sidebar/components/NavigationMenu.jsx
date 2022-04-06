@@ -22,11 +22,11 @@ const NavigationMenu = () => {
       <ul className="navigation-list">
         {navItems.map((nav) => {
           return nav.name == "Explore" ? (
-            <li>
+            <li key={nav.name}>
               <NavItemExplore />
             </li>
           ) : (
-            <li>
+            <li key={nav.name}>
               <NavLink
                 className={({ isActive }) =>
                   `link nav-item text-xl ${
