@@ -1,0 +1,41 @@
+.home .section-heading {
+  background-color: var(--COLOR-SECONDARY-V3);
+  padding: 4px;
+  border-radius: 1rem;
+}
+
+.home .categories-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.home .category-card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 4/3;
+}
+
+.home .category-card:hover img {
+  cursor: pointer;
+  filter: brightness(20%);
+}
+
+.home .category-card .title {
+  z-index: 1;
+  color: var(--COLOR-SECONDARY-V3);
+}
+
+.home .category-card img {
+  filter: brightness(40%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}

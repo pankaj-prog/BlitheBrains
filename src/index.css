@@ -53,6 +53,10 @@
   background-color: var(--COLOR-SECONDARY);
 }
 
+.btn-solid-secondary:hover {
+  background-color: var(--COLOR-SECONDARY-V3);
+}
+
 /* text color blue */
 .text-link {
   color: var(--CTA-COLOR);
@@ -68,8 +72,11 @@ body {
 
 .app {
   display: grid;
-  grid-template-columns: 270px 1fr;
-  gap: 1rem;
+  grid-template-columns: 17rem 1fr;
   min-height: 100vh;
   background-color: var(--COLOR-SECONDARY-V2);
+}
+
+.content {
+  padding: 1rem;
 }
