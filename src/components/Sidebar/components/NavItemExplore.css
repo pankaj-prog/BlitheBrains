@@ -1,0 +1,11 @@
+.sidebar .categories-section {
+  display: none;
+  list-style-type: none;
+  padding: 0.5rem 0 0 3rem;
+}
+
+.sidebar .categories-section-active {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
