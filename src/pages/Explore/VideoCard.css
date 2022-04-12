@@ -1,0 +1,94 @@
+.explore-page .video-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.explore-page .video-card .content {
+  padding: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.explore-page .video-card:hover {
+  cursor: pointer;
+}
+
+.explore-page .video-card .img-wrapper {
+  position: relative;
+}
+
+.explore-page .video-card .img-wrapper img {
+  display: block;
+}
+
+.explore-page .video-card:hover .img-wrapper img {
+  filter: brightness(60%);
+}
+
+.explore-page .video-card .cta-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.explore-page .video-card .cta-wrapper .btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  opacity: 0;
+  font-size: 1.5rem;
+  min-width: 1.2em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--COLOR-PRIMARY);
+  color: var(--COLOR-SECONDARY);
+  transition: opacity 0.5s ease;
+}
+
+.explore-page .video-card .cta-wrapper .btn .info {
+  font-size: 1rem;
+  font-weight: normal;
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  border-radius: 4px;
+  background-color: var(--COLOR-PRIMARY);
+  color: var(--COLOR-SECONDARY);
+  width: max-content;
+  padding: 8px;
+  z-index: 2;
+  display: none;
+}
+
+.explore-page .video-card .cta-wrapper .btn:hover .info {
+  display: block;
+}
+
+.explore-page .video-card:hover .btn {
+  opacity: 1;
+}
+
+.explore-page .video-card .avatar {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+.explore-page .video-card .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.explore-page .video-card .video-data {
+  display: flex;
+  gap: 1rem;
+}

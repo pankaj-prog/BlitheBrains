@@ -6,7 +6,15 @@
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
-  aspect-ratio: 4/1.5;
+  aspect-ratio: 4/1.6;
+  transition: opacity 0.8s ease;
+}
+
+.carousel-card.onpage {
+  opacity: 1;
+}
+.carousel-card.entering {
+  opacity: 0;
 }
 
 .carousel-card img {

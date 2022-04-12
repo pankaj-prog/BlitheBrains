@@ -1,0 +1,6 @@
+.banner {
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--COLOR-PRIMARY-V3);
+  color: var(--COLOR-SECONDARY-V2);
+}

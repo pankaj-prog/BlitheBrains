@@ -6,13 +6,30 @@ import CarouselCard from "./CarouselCard";
 
 const Carousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [transitionClass, setTransitionClass] = useState("onpage");
+
+  let className;
+  if (transitionClass == "entering") {
+    className = "carousel-card entering";
+  }
+  if (transitionClass == "onpage") {
+    className = "carousel-card onpage";
+  }
 
   useEffect(() => {
     const id = setTimeout(() => {
       if (carouselIndex == 2) {
-        setCarouselIndex(0);
+        setTransitionClass("entering");
+        setTimeout(() => {
+          setTransitionClass("onpage");
+          setCarouselIndex(0);
+        }, 200);
       } else {
-        setCarouselIndex(carouselIndex + 1);
+        setTransitionClass("entering");
+        setTimeout(() => {
+          setTransitionClass("onpage");
+          setCarouselIndex(carouselIndex + 1);
+        }, 200);
       }
     }, 3000);
 
@@ -21,7 +38,7 @@ const Carousel = () => {
 
   return (
     <section className="carousel-wrapper gutter-bottom-24">
-      <CarouselCard video={videos[carouselIndex]} />
+      <CarouselCard video={videos[carouselIndex]} className={className} />
     </section>
   );
 };

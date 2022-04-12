@@ -1,8 +1,8 @@
 import React from "react";
 
-const CarouselCard = ({ video }) => {
+const CarouselCard = ({ video, className }) => {
   return (
-    <article className="carousel-card">
+    <article className={className}>
       <img src={video.thumbnail} alt={video.title} />
       <div className="content">
         <h2 className="title text-center">{video.title} </h2>
