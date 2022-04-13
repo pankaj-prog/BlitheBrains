@@ -1,11 +1,17 @@
 .sidebar .categories-section {
-  display: none;
+  overflow: clip;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
   list-style-type: none;
-  padding: 0.5rem 0 0 3rem;
+  height: 0;
+  padding: 0;
+  transition: 0.5s;
 }
 
 .sidebar .categories-section-active {
-  display: flex;
-  flex-direction: column;
+  padding: 0.5rem 0 0 3rem;
+  visibility: visible;
+  height: 6.5rem;
   gap: 8px;
 }
