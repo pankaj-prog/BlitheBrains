@@ -25,7 +25,7 @@ const VideoCard = ({ thumbnail, title, creatorImg, creator, views, date }) => {
           <img className="responsive-img" src={creatorImg} alt={creator} />
         </div>
         <div>
-          <div className="title">{title}</div>
+          <p className="title">{title}</p>
           <section className="content-secondary">
             <div className="video-data text-muted">
               <span className="views">{views} views </span>
