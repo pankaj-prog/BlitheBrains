@@ -1,14 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { MdOutlineWatchLater, MdPlaylistPlay } from "react-icons/md";
 
 import "./VideoCard.css";
 
 const VideoCard = ({ thumbnail, title, creatorImg, creator, views, date }) => {
+  const navigate = useNavigate();
+  const cardClickHandler = (e) => {
+    !(e.target.tagName == "svg") && navigate("/v/id");
+  };
+
   return (
-    <article className="video-card">
+    <article onClick={cardClickHandler} className="video-card">
       <div className="img-wrapper">
         <img className="responsive-img" src={thumbnail} alt={title} />
-
         <div className="cta-wrapper">
           <button className="btn">
             <MdOutlineWatchLater />
