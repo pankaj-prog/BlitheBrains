@@ -31,7 +31,7 @@ function App() {
         <Route element={<RoutesWithSidebar />}>
           <Route path="/home" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
-          <Route path="/v/:videoId" element={<VideoPage />} />
+          <Route path="/video/:videoId" element={<VideoPage />} />
 
           <Route element={<PrivateRoutes />}>
             <Route path="/history" element={<History />} />

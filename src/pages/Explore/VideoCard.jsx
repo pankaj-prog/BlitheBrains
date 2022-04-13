@@ -7,7 +7,7 @@ import "./VideoCard.css";
 const VideoCard = ({ thumbnail, title, creatorImg, creator, views, date }) => {
   const navigate = useNavigate();
   const cardClickHandler = (e) => {
-    !(e.target.tagName == "svg") && navigate("/v/id");
+    !(e.target.tagName == "svg") && navigate("/video/id");
   };
 
   return (
