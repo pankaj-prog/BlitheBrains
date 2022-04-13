@@ -5,5 +5,6 @@ export { default as LikedVideos } from "./LikedVideos/LikedVideos";
 export { default as Page404 } from "./Page404/Page404";
 export { default as Playlist } from "./Playlist/Playlist";
 export { default as WatchLater } from "./WatchLater/WatchLater";
+export { default as VideoPage } from "./VideoPage/VideoPage";
 export { default as Login } from "./auth/Login";
 export { default as Signup } from "./auth/Signup";

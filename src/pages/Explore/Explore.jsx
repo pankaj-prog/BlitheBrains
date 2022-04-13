@@ -10,7 +10,7 @@ const Explore = () => {
       <Banner title="Explore Videos" />
       <section className="videos-wrapper">
         {videos.map((video) => (
-          <VideoCard key={video.id} {...video} />
+          <VideoCard key={video._id} {...video} />
         ))}
       </section>
     </div>

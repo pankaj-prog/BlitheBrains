@@ -1,0 +1,62 @@
+.video-section .video-wrapper {
+  overflow: hidden;
+  border-radius: 1rem;
+  aspect-ratio: 5/2;
+}
+
+.video-section .video-wrapper .video {
+  height: 100%;
+  width: 100%;
+}
+
+.video-section .creator-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.video-section .creator-wrapper .avatar {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.video-section .video-details {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.video-section .video-details .details {
+  display: inline-flex;
+  gap: 1.5rem;
+  color: var(--COLOR-PRIMARY-V3);
+}
+
+.video-section .video-details .cta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.video-section .video-details .cta .icon-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.video-section .video-details .cta .btn:hover {
+  background-color: var(--COLOR-SECONDARY-V3);
+}
+
+.video-section .video-details .cta .playlist-btn-wrapper {
+  font-weight: normal;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+}
+
+.video-section .video-details .cta .playlist-btn-wrapper svg {
+  font-size: 1.8rem;
+}

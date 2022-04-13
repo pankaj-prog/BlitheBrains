@@ -13,6 +13,7 @@ import {
   Page404,
   Playlist,
   Signup,
+  VideoPage,
   WatchLater,
 } from "./pages";
 
@@ -30,6 +31,7 @@ function App() {
         <Route element={<RoutesWithSidebar />}>
           <Route path="/home" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/video/:videoId" element={<VideoPage />} />
 
           <Route element={<PrivateRoutes />}>
             <Route path="/history" element={<History />} />
