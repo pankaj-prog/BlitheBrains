@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 
 import { images } from "../../assets/";
 import NavigationMenu from "./components/NavigationMenu";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [showUserWrapper, setShowUserWrapper] = useState(false);
@@ -32,9 +33,11 @@ const Sidebar = () => {
       >
         <h4>Do more with Blithe Brains</h4>
         <p className="text-center gutter-bottom-8">
-          Sign in now to save videos, create playlists and much more.
+          Log in in now to save videos, create playlists and much more.
         </p>
-        <button className="btn btn-solid-primary btn-rc">Sign in</button>
+        <Link to="/login">
+          <button className="btn btn-solid-primary btn-rc">Log in</button>
+        </Link>
       </section>
       <section className="search-wrapper">
         <label htmlFor="search-input">
