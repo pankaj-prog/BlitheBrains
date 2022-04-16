@@ -5,3 +5,6 @@ export { default as Carousel } from "./Carousel/Carousel";
 export { default as Banner } from "./Banner/Banner";
 export { default as VideoCardHorizontal } from "./VideoCardHorizontal/VideoCardHorizontal";
 export { default as RouteWithNavbar } from "./RouteWithNavbar/RouteWithNavbar";
+export { default as AlertContainer } from "./Alert/AlertContainer";
+export { default as ScrollToTopButton } from "./ScrollToTopButton/ScrollToTopButton";
+export { default as ScrollToTop } from "./ScrollToTop/ScrollToTop";
