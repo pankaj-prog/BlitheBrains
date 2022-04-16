@@ -5,7 +5,7 @@ const CarouselCard = ({ video, className }) => {
     <article className={className}>
       <img src={video.thumbnail} alt={video.title} />
       <div className="content">
-        <h2 className="title text-center">{video.title} </h2>
+        <h2 className="text-center">{video.title} </h2>
         <button
           className="btn btn-solid-secondary btn-rc"
           onClick={() => console.log("clicked")}

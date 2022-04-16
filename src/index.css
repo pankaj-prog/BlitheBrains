@@ -70,11 +70,24 @@ body {
 
 /* app */
 
-.app {
+.app-with-sidebar {
   display: grid;
   grid-template-columns: 17rem 1fr;
   min-height: 100vh;
   background-color: var(--COLOR-SECONDARY-V2);
+}
+
+.app-with-navbar {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  background-color: var(--COLOR-SECONDARY-V2);
+}
+
+.app-header {
+  box-shadow: 2px 0px 8px 0px var(--COLOR-PRIMARY-V2);
+  background-color: var(--COLOR-SECONDARY);
+  padding: 4px;
 }
 
 .content {

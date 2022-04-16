@@ -26,6 +26,7 @@
 }
 
 .home .category-card .title {
+  border: none;
   z-index: 1;
   color: var(--COLOR-SECONDARY-V3);
 }
