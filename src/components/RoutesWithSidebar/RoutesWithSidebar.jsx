@@ -4,10 +4,10 @@ import { Outlet } from "react-router-dom";
 
 const RoutesWithSidebar = () => {
   return (
-    <>
+    <div className="app-with-sidebar">
       <Sidebar />
       <Outlet />
-    </>
+    </div>
   );
 };
 

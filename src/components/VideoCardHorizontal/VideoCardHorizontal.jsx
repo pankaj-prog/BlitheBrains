@@ -30,7 +30,9 @@ const VideoCardHorizontal = ({
   return (
     <article
       onClick={cardClickHandler}
-      className="video-card-horizontal gutter-bottom-32"
+      className={`video-card-horizontal gutter-bottom-32 ${
+        cardType == "playlist" ? "playlist-video-card" : ""
+      }`}
     >
       <div className="img-wrapper">
         <img className="responsive-img" src={thumbnail} alt={title} />
@@ -47,7 +49,10 @@ const VideoCardHorizontal = ({
           </div>
           <h5>{creator}</h5>
         </div>
-        <p className="description text-muted text-sm">{description}</p>
+        {/* Do not show description when it is there in playlist card */}
+        {!(cardType == "playlist") && (
+          <p className="description text-muted text-sm">{description}</p>
+        )}
       </section>
       {/* stop naviagate class is used to stop navigation to video page */}
       <div className="options-btn stop-navigate">

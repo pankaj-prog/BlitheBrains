@@ -82,6 +82,7 @@
 }
 
 .explore-page .video-card .title {
+  border: none;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;

@@ -16,11 +16,16 @@
   flex-shrink: 0;
 }
 
+.video-card-horizontal.playlist-video-card .img-wrapper {
+  width: 15rem;
+}
+
 .video-card-horizontal .img-wrapper img {
   display: block;
 }
 
 .video-card-horizontal .title {
+  border: none;
   line-height: 1.2em;
   display: -webkit-box;
   -webkit-box-orient: vertical;

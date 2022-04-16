@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { RoutesWithSidebar, PrivateRoutes } from "./components/";
+import {
+  RoutesWithSidebar,
+  PrivateRoutes,
+  RouteWithNavbar,
+} from "./components/";
+import Mockman from "mockman-js";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -26,27 +31,27 @@ function App() {
   }, [location]);
 
   return (
-    <div className="app">
-      <Routes>
-        <Route element={<RoutesWithSidebar />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/video/:videoId" element={<VideoPage />} />
+    <Routes>
+      <Route element={<RoutesWithSidebar />}>
+        <Route path="/home" element={<Home />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/video/:videoId" element={<VideoPage />} />
 
-          <Route element={<PrivateRoutes />}>
-            <Route path="/history" element={<History />} />
-            <Route path="/likedvideos" element={<LikedVideos />} />
-            <Route path="/playlist" element={<Playlist />} />
-            <Route path="/watchlater" element={<WatchLater />} />
-          </Route>
-
-          <Route path="*" element={<Page404 />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/history" element={<History />} />
+          <Route path="/likedvideos" element={<LikedVideos />} />
+          <Route path="/playlist" element={<Playlist />} />
+          <Route path="/watchlater" element={<WatchLater />} />
         </Route>
 
+        <Route path="*" element={<Page404 />} />
+      </Route>
+      <Route element={<RouteWithNavbar />}>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-      </Routes>
-    </div>
+        <Route path="/mock" element={<Mockman />} />
+      </Route>
+    </Routes>
   );
 }
 
