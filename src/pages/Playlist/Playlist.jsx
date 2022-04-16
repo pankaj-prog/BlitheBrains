@@ -35,7 +35,7 @@ const Playlist = () => {
         <section className="playlist-wrapper">
           {playlists.map((playlist) => {
             return (
-              <div className="text-center">
+              <div key={playlist._id} className="text-center">
                 <h4
                   className={`playlist-title ${
                     playlist._id == "a2" && "playlist-active-title"
@@ -53,7 +53,11 @@ const Playlist = () => {
         </section>
         <section className="playlist-videos">
           {videos.map((video) => (
-            <VideoCardHorizontal {...video} cardType="playlist" />
+            <VideoCardHorizontal
+              key={video._id}
+              {...video}
+              cardType="playlist"
+            />
           ))}
         </section>
       </div>
