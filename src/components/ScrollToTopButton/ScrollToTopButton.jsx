@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const ScrollToTopButton = () => {
-  const [hideButton, setHideButton] = useState(false);
+  const [hideButton, setHideButton] = useState(true);
 
   const scrollToTopHandler = () => {
     window.scrollTo(0, 0);

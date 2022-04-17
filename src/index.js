@@ -7,7 +7,7 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 
-import { AlertProvider, AuthProvider } from "./context";
+import { AlertProvider, AuthProvider, CategoryProvider } from "./context";
 
 // Call make Server
 makeServer();
@@ -17,7 +17,9 @@ ReactDOM.render(
     <Router>
       <AuthProvider>
         <AlertProvider>
-          <App />
+          <CategoryProvider>
+            <App />
+          </CategoryProvider>
         </AlertProvider>
       </AuthProvider>
     </Router>

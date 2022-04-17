@@ -10,8 +10,19 @@
 }
 
 .sidebar .categories-section-active {
-  padding: 0.5rem 0 0 3rem;
+  padding: 0.5rem 0 0 2.5rem;
   visibility: visible;
-  height: 6.5rem;
+  height: 9.6rem;
   gap: 8px;
+}
+
+.sidebar .categories-section li {
+  font-size: 1.1rem;
+}
+
+.sidebar .categories-section .category-active {
+  padding-left: 0.5rem;
+  border-left: 3px solid var(--COLOR-PRIMARY);
+  background-color: var(--COLOR-SECONDARY-V2);
+  border-radius: 0 1rem 1rem 0;
 }
