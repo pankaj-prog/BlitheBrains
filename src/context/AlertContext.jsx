@@ -9,7 +9,7 @@ const AlertProvider = ({ children }) => {
   const [alertList, setAlertList] = useState([]);
 
   const showAlert = (message, type) => {
-    setAlertList((prev) => [...prev, { id: uuid(), type, message }]);
+    setAlertList((prev) => [...prev, { _id: uuid(), type, message }]);
   };
 
   return (

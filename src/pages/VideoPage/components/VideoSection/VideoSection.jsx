@@ -31,7 +31,7 @@ const VideoSection = () => {
           frameborder="0"
         ></iframe>
       </section>
-      <h1 className="title text-xl fw-b">{video.title}</h1>
+      <h1 className="text-xl fw-b">{video.title}</h1>
       <section className="video-details gutter-bottom-16">
         <div className="details h5">
           <span className="views">{video.views} Views</span>

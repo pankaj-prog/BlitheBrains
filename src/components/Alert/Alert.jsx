@@ -7,16 +7,16 @@ const Alert = ({ alert }) => {
   useEffect(() => {
     setTimeout(() => {
       setAlertList((prev) => {
-        return prev.filter((item) => item.id !== alert.id);
+        return prev.filter((item) => item._id !== alert._id);
       });
-    }, 2000);
+    }, 3000);
   }, [alertList]);
 
   const iconClassName = (alertType) => {
     switch (alertType) {
       case "success":
         return "fa-check-circle";
-      case "erroe":
+      case "error":
         return "fa-exclamation-triangle";
       default:
         return "";
@@ -24,9 +24,9 @@ const Alert = ({ alert }) => {
   };
 
   return (
-    <div class={`alert alert-${alert.type}`}>
-      <i class={`fas alert-icon ${iconClassName(alert.type)} `}></i>
-      <p class="alert-message"> {alert.message}</p>
+    <div className={`alert alert-${alert.type}`}>
+      <i className={`fas alert-icon ${iconClassName(alert.type)} `}></i>
+      <p className="alert-message"> {alert.message}</p>
     </div>
   );
 };
