@@ -44,7 +44,7 @@ export const videos = [
     creatorImg: images.rajshamani,
     category: ["podcast"],
     views: "536,427",
-    label: [""],
+    label: ["carousel"],
     date: "Sep 10, 2021",
   },
   {
@@ -58,7 +58,7 @@ export const videos = [
     creatorImg: images.rajshamani,
     category: ["podcast"],
     views: "2,515,842",
-    label: [""],
+    label: ["carousel"],
     date: "11 Feb 2022",
   },
   {
@@ -84,7 +84,7 @@ export const videos = [
     creatorImg: images.productivityGame,
     category: ["book summary"],
     views: "346,658",
-    label: [""],
+    label: ["carousel"],
     date: "20 Apr 2017",
   },
 ];
