@@ -2,21 +2,30 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./VideoCardHorizontal.css";
 import { AiOutlineDislike, AiOutlineHistory } from "react-icons/ai";
-import { MdOutlineWatchLater, MdPlaylistPlay } from "react-icons/md";
+import {
+  MdOutlineWatchLater,
+  MdWatchLater,
+  MdPlaylistPlay,
+} from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
+import { useLikedVideos, useWatchLater } from "../../context";
 
-const VideoCardHorizontal = ({
-  _id,
-  thumbnail,
-  title,
-  views,
-  date,
-  creator,
-  creatorImg,
-  description,
-  cardType,
-}) => {
+const VideoCardHorizontal = ({ video, cardType }) => {
+  const {
+    _id,
+    thumbnail,
+    title,
+    views,
+    date,
+    creator,
+    creatorImg,
+    description,
+  } = video;
   const navigate = useNavigate();
+
+  const { watchLaterVideos, removeFromWatchLater, addToWatchLater } =
+    useWatchLater();
+  const { dislikeVideoHandler } = useLikedVideos();
 
   const cardClickHandler = (e) => {
     if (
@@ -28,6 +37,9 @@ const VideoCardHorizontal = ({
     }
     return navigate(`/video/${_id}`);
   };
+
+  let isVideoInWatchLater = watchLaterVideos.some((item) => item._id == _id);
+
   return (
     <article
       onClick={cardClickHandler}
@@ -59,17 +71,36 @@ const VideoCardHorizontal = ({
       <div className="options-btn stop-navigate">
         <HiDotsVertical />
         <div className="cta-wrapper stop-navigate">
-          <button className="btn stop-navigate">
-            <MdOutlineWatchLater />
-            <span className="info stop-navigate"> Watch later</span>
-          </button>
+          {isVideoInWatchLater ? (
+            <button
+              onClick={() => removeFromWatchLater(_id)}
+              className="btn stop-navigate"
+            >
+              <MdWatchLater />
+              <span className="info stop-navigate">
+                {" "}
+                Remove from watch later
+              </span>
+            </button>
+          ) : (
+            <button
+              onClick={() => addToWatchLater(video)}
+              className="btn stop-navigate"
+            >
+              <MdOutlineWatchLater />
+              <span className="info stop-navigate"> Watch later</span>
+            </button>
+          )}
 
           <button className="btn stop-navigate">
             <MdPlaylistPlay />
             <span className="info stop-navigate">Playlist</span>
           </button>
           {cardType == "like" && (
-            <button className="btn stop-navigate">
+            <button
+              onClick={() => dislikeVideoHandler(_id)}
+              className="btn stop-navigate"
+            >
               <AiOutlineDislike />
               <span className="info stop-navigate">Dislike Video</span>
             </button>

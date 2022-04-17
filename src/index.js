@@ -7,7 +7,13 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 
-import { AlertProvider, AuthProvider, CategoryProvider } from "./context";
+import {
+  AlertProvider,
+  AuthProvider,
+  CategoryProvider,
+  LikedVideoProvider,
+  WatchLaterProvider,
+} from "./context";
 
 // Call make Server
 makeServer();
@@ -17,9 +23,13 @@ ReactDOM.render(
     <Router>
       <AuthProvider>
         <AlertProvider>
-          <CategoryProvider>
-            <App />
-          </CategoryProvider>
+          <WatchLaterProvider>
+            <LikedVideoProvider>
+              <CategoryProvider>
+                <App />
+              </CategoryProvider>
+            </LikedVideoProvider>
+          </WatchLaterProvider>
         </AlertProvider>
       </AuthProvider>
     </Router>

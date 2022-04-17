@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-import { AiOutlineLike } from "react-icons/ai";
-import { MdOutlineWatchLater, MdPlaylistPlay } from "react-icons/md";
+import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+import {
+  MdOutlineWatchLater,
+  MdWatchLater,
+  MdPlaylistPlay,
+} from "react-icons/md";
 import { useParams } from "react-router-dom";
+import { useLikedVideos, useWatchLater } from "../../../../context";
 import { useAxios } from "../../../../utils/useAxios";
 
 import "./VideoSection.css";
@@ -11,6 +16,13 @@ const VideoSection = () => {
   const { videoId } = useParams();
   const { makeRequest, response } = useAxios();
   const [video, setVideo] = useState();
+  const { likeVideoHandler, likedVideoList, dislikeVideoHandler } =
+    useLikedVideos();
+  const { addToWatchLater, removeFromWatchLater, watchLaterVideos } =
+    useWatchLater();
+
+  let isVideoInLikes = false;
+  let isVideoInWatchLater = false;
 
   useEffect(() => {
     makeRequest({
@@ -24,6 +36,13 @@ const VideoSection = () => {
       setVideo(response.video);
     }
   }, [response]);
+
+  if (video) {
+    isVideoInLikes = likedVideoList.some((item) => item._id == video._id);
+    isVideoInWatchLater = watchLaterVideos.some(
+      (item) => item._id == video._id
+    );
+  }
 
   return video ? (
     <div className="video-section gutter-bottom-24">
@@ -41,12 +60,37 @@ const VideoSection = () => {
           <span className="date">{video.date} </span>
         </div>
         <div className="cta">
-          <button className="btn icon-btn text-xl">
-            <AiOutlineLike />
-          </button>
-          <button className="btn icon-btn text-xl">
-            <MdOutlineWatchLater />
-          </button>
+          {isVideoInLikes ? (
+            <button
+              onClick={() => dislikeVideoHandler(video._id)}
+              className="btn icon-btn text-xl"
+            >
+              <AiFillLike />
+            </button>
+          ) : (
+            <button
+              onClick={() => likeVideoHandler(video)}
+              className="btn icon-btn text-xl"
+            >
+              <AiOutlineLike />
+            </button>
+          )}
+
+          {isVideoInWatchLater ? (
+            <button
+              onClick={() => removeFromWatchLater(video._id)}
+              className="btn icon-btn text-xl"
+            >
+              <MdWatchLater />
+            </button>
+          ) : (
+            <button
+              onClick={() => addToWatchLater(video)}
+              className="btn icon-btn text-xl"
+            >
+              <MdOutlineWatchLater />
+            </button>
+          )}
           <button className="btn btn-rc playlist-btn-wrapper">
             <MdPlaylistPlay />
             <span className="btn-info">Save</span>

@@ -55,7 +55,7 @@ const Playlist = () => {
           {videos.map((video) => (
             <VideoCardHorizontal
               key={video._id}
-              {...video}
+              video={video}
               cardType="playlist"
             />
           ))}
