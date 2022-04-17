@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactPlayer from "react-player/lazy";
 
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import {
@@ -7,35 +8,20 @@ import {
   MdPlaylistPlay,
 } from "react-icons/md";
 import { useParams } from "react-router-dom";
-import { useLikedVideos, useWatchLater } from "../../../../context";
+import { useHistory, useLikedVideos, useWatchLater } from "../../../../context";
 import { useAxios } from "../../../../utils/useAxios";
 
 import "./VideoSection.css";
 
-const VideoSection = () => {
-  const { videoId } = useParams();
-  const { makeRequest, response } = useAxios();
-  const [video, setVideo] = useState();
+const VideoSection = ({ video }) => {
   const { likeVideoHandler, likedVideoList, dislikeVideoHandler } =
     useLikedVideos();
   const { addToWatchLater, removeFromWatchLater, watchLaterVideos } =
     useWatchLater();
+  const { addToHistory } = useHistory();
 
   let isVideoInLikes = false;
   let isVideoInWatchLater = false;
-
-  useEffect(() => {
-    makeRequest({
-      method: "get",
-      url: `/api/video/${videoId}`,
-    });
-  }, []);
-
-  useEffect(() => {
-    if (response) {
-      setVideo(response.video);
-    }
-  }, [response]);
 
   if (video) {
     isVideoInLikes = likedVideoList.some((item) => item._id == video._id);
@@ -47,11 +33,13 @@ const VideoSection = () => {
   return video ? (
     <div className="video-section gutter-bottom-24">
       <section className="video-wrapper gutter-bottom-16">
-        <iframe
-          className="video"
-          src={`https://www.youtube.com/embed/${video._id}`}
-          frameBorder="0"
-        ></iframe>
+        <ReactPlayer
+          controls
+          url={`https://www.youtube.com/watch?v=${video._id}`}
+          onStart={() => addToHistory(video)}
+          height="100%"
+          width="100%"
+        ></ReactPlayer>
       </section>
       <h1 className="text-xl fw-b">{video.title}</h1>
       <section className="video-details gutter-bottom-16">
