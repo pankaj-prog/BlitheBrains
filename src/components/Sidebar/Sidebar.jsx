@@ -5,9 +5,16 @@ import { FaSearch } from "react-icons/fa";
 import { images } from "../../assets/";
 import NavigationMenu from "./components/NavigationMenu";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context";
 
 const Sidebar = () => {
   const [showUserWrapper, setShowUserWrapper] = useState(false);
+  const { isLoggedIn, setEncodedToken } = useAuth();
+
+  const logoutHandler = () => {
+    localStorage.removeItem("encodedToken");
+    setEncodedToken(null);
+  };
 
   return (
     <aside className="sidebar">
@@ -31,13 +38,27 @@ const Sidebar = () => {
           showUserWrapper ? "user-wrapper user-wrapper-active" : "user-wrapper"
         }
       >
-        <h4>Do more with Blithe Brains</h4>
-        <p className="text-center gutter-bottom-8">
-          Log in in now to save videos, create playlists and much more.
-        </p>
-        <Link to="/login">
-          <button className="btn btn-solid-primary btn-rc">Log in</button>
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <h4 className="text-center gutter-bottom-8">User's Name</h4>{" "}
+            <button
+              onClick={logoutHandler}
+              className="btn btn-solid-primary btn-rc"
+            >
+              Log out
+            </button>
+          </>
+        ) : (
+          <>
+            <h4>Do more with Blithe Brains</h4>
+            <p className="text-center gutter-bottom-8">
+              Log in in now to save videos, create playlists and much more.
+            </p>
+            <Link to="/login">
+              <button className="btn btn-solid-primary btn-rc">Log in</button>
+            </Link>{" "}
+          </>
+        )}
       </section>
       <section className="search-wrapper">
         <label htmlFor="search-input">

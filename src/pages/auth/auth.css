@@ -64,6 +64,11 @@
   background-color: transparent;
 }
 
+.auth-form .error-message {
+  color: var(--ERROR);
+  line-height: 1.1em;
+}
+
 .auth-form .checkbox-input-container {
   padding: 0.2rem 0;
 }

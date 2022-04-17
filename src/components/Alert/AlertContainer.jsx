@@ -9,7 +9,7 @@ const AlertContainer = () => {
   return (
     <div className="alert-container">
       {[...alertList]?.reverse().map((alert) => (
-        <Alert alert={alert} />
+        <Alert key={alert._id} alert={alert} />
       ))}
     </div>
   );
