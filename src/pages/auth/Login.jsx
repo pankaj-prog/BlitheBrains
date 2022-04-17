@@ -115,7 +115,7 @@ const Login = () => {
           )}
           <div className="checkbox-input-container">
             <input
-              onChange={() => setShowPassword(!showPassword)}
+              onChange={() => setShowPassword((prev) => !prev)}
               type="checkbox"
               className="checkbox"
               id="show-password"

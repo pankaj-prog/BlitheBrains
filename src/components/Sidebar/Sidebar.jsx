@@ -4,13 +4,14 @@ import { FaSearch } from "react-icons/fa";
 
 import { images } from "../../assets/";
 import NavigationMenu from "./components/NavigationMenu";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 
 const Sidebar = () => {
   const [showUserWrapper, setShowUserWrapper] = useState(false);
   const { isLoggedIn, setEncodedToken } = useAuth();
 
+  const navigate = useNavigate();
   const logoutHandler = () => {
     localStorage.removeItem("encodedToken");
     setEncodedToken(null);
@@ -54,9 +55,12 @@ const Sidebar = () => {
             <p className="text-center gutter-bottom-8">
               Log in in now to save videos, create playlists and much more.
             </p>
-            <Link to="/login">
-              <button className="btn btn-solid-primary btn-rc">Log in</button>
-            </Link>{" "}
+            <button
+              onClick={() => navigate("/login")}
+              className="btn btn-solid-primary btn-rc"
+            >
+              Log in
+            </button>
           </>
         )}
       </section>

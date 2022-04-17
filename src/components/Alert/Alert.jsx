@@ -16,7 +16,7 @@ const Alert = ({ alert }) => {
     switch (alertType) {
       case "success":
         return "fa-check-circle";
-      case "erroe":
+      case "error":
         return "fa-exclamation-triangle";
       default:
         return "";
