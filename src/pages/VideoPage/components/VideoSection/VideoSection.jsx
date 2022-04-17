@@ -1,34 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { AiOutlineLike } from "react-icons/ai";
 import { MdOutlineWatchLater, MdPlaylistPlay } from "react-icons/md";
-import { images } from "../../../../assets";
+import { useParams } from "react-router-dom";
+import { useAxios } from "../../../../utils/useAxios";
 
 import "./VideoSection.css";
 
-const video = {
-  _id: "31UVvKEYO6k",
-  thumbnail: images.boat,
-  title:
-    "How Aman Gupta's MARKETING STRATEGY turned Boat into a 1500CR Company : Business case study",
-  description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, labore. Sint eum amet, inventore itaque, asperiores earum assumenda accusamus illo a similique dolor hic vero non sunt deleniti iste aliquam suscipit culpa provident. Temporibus natus deleniti sequi perspiciatis totam recusandae, laboriosam odio voluptatibus, quam id, odit cum animi pariatur facilis.",
-  creator: "Think School",
-  creatorImg: images.thinkSchool,
-  category: ["case study"],
-  views: "971,345",
-  label: [""],
-  date: "Jan 28, 2022",
-};
-
 const VideoSection = () => {
-  return (
+  const { videoId } = useParams();
+  const { makeRequest, response } = useAxios();
+  const [video, setVideo] = useState();
+
+  useEffect(() => {
+    makeRequest({
+      method: "get",
+      url: `/api/video/${videoId}`,
+    });
+  }, []);
+
+  useEffect(() => {
+    if (response) {
+      setVideo(response.video);
+    }
+  }, [response]);
+
+  return video ? (
     <div className="video-section gutter-bottom-24">
       <section className="video-wrapper gutter-bottom-16">
         <iframe
           className="video"
           src={`https://www.youtube.com/embed/${video._id}`}
-          frameborder="0"
+          frameBorder="0"
         ></iframe>
       </section>
       <h1 className="text-xl fw-b">{video.title}</h1>
@@ -62,6 +65,8 @@ const VideoSection = () => {
       </section>
       <p className="description">{video.description}</p>
     </div>
+  ) : (
+    <p>loading...</p>
   );
 };
 

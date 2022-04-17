@@ -4,10 +4,18 @@ import { MdOutlineWatchLater, MdPlaylistPlay } from "react-icons/md";
 
 import "./VideoCard.css";
 
-const VideoCard = ({ thumbnail, title, creatorImg, creator, views, date }) => {
+const VideoCard = ({
+  _id,
+  thumbnail,
+  title,
+  creatorImg,
+  creator,
+  views,
+  date,
+}) => {
   const navigate = useNavigate();
   const cardClickHandler = (e) => {
-    !(e.target.tagName == "svg") && navigate("/video/id");
+    !(e.target.tagName == "svg") && navigate(`/video/${_id}`);
   };
 
   return (

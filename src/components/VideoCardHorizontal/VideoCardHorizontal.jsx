@@ -6,6 +6,7 @@ import { MdOutlineWatchLater, MdPlaylistPlay } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
 
 const VideoCardHorizontal = ({
+  _id,
   thumbnail,
   title,
   views,
@@ -25,7 +26,7 @@ const VideoCardHorizontal = ({
     ) {
       return undefined;
     }
-    return navigate("/video/id");
+    return navigate(`/video/${_id}`);
   };
   return (
     <article

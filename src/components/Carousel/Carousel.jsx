@@ -1,13 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { videos } from "../../backend/db/videos";
 
 import "./Carousel.css";
 import CarouselCard from "./CarouselCard";
+import { useAxios } from "../../utils/useAxios";
 
 const Carousel = () => {
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [transitionClass, setTransitionClass] = useState("onpage");
 
+  // video fetch
+  const [carouselVideos, setCarouselVideos] = useState([]);
+
+  const { makeRequest, response } = useAxios();
+
+  useEffect(() => {
+    makeRequest({
+      method: "get",
+      url: "/api/videos",
+    });
+  }, []);
+
+  useEffect(() => {
+    if (response) {
+      const filteredVideos = response.videos.filter((video) => {
+        return video.label.includes("carousel");
+      });
+      setCarouselVideos(filteredVideos);
+    }
+  }, [response]);
+
+  // carousel
   let className;
   if (transitionClass == "entering") {
     className = "carousel-card entering";
@@ -38,7 +60,12 @@ const Carousel = () => {
 
   return (
     <section className="carousel-wrapper gutter-bottom-24">
-      <CarouselCard video={videos[carouselIndex]} className={className} />
+      {carouselVideos.length > 0 && (
+        <CarouselCard
+          video={carouselVideos[carouselIndex]}
+          className={className}
+        />
+      )}
     </section>
   );
 };
