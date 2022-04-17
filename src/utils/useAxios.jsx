@@ -15,8 +15,10 @@ export const useAxios = () => {
       const res = await axios.request(params);
       setResponse(res.data);
     } catch (error) {
-      if (error.response && error.response.data.errors) {
-        showAlert(error.response.data.errors[0], "error");
+      if (!(params.method == "post" && params.url == "/api/user/history")) {
+        if (error.response && error.response.data.errors) {
+          showAlert(error.response.data.errors[0], "error");
+        }
       }
       setError(error);
     } finally {

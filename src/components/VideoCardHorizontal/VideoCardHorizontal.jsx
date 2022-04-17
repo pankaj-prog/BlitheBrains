@@ -8,7 +8,7 @@ import {
   MdPlaylistPlay,
 } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
-import { useLikedVideos, useWatchLater } from "../../context";
+import { useHistory, useLikedVideos, useWatchLater } from "../../context";
 
 const VideoCardHorizontal = ({ video, cardType }) => {
   const {
@@ -26,6 +26,7 @@ const VideoCardHorizontal = ({ video, cardType }) => {
   const { watchLaterVideos, removeFromWatchLater, addToWatchLater } =
     useWatchLater();
   const { dislikeVideoHandler } = useLikedVideos();
+  const { removeFromHistory } = useHistory();
 
   const cardClickHandler = (e) => {
     if (
@@ -35,7 +36,8 @@ const VideoCardHorizontal = ({ video, cardType }) => {
     ) {
       return undefined;
     }
-    return navigate(`/video/${_id}`);
+    window.scrollTo(0, 0);
+    navigate(`/video/${_id}`);
   };
 
   let isVideoInWatchLater = watchLaterVideos.some((item) => item._id == _id);
@@ -106,7 +108,10 @@ const VideoCardHorizontal = ({ video, cardType }) => {
             </button>
           )}
           {cardType == "history" && (
-            <button className="btn stop-navigate">
+            <button
+              onClick={() => removeFromHistory(_id)}
+              className="btn stop-navigate"
+            >
               <AiOutlineHistory />
               <span className="info stop-navigate">Remove from history</span>
             </button>
