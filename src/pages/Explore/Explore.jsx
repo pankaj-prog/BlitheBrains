@@ -36,7 +36,7 @@ const Explore = () => {
       <section className="videos-wrapper">
         {filteredVideoList.length > 0 &&
           filteredVideoList.map((video) => (
-            <VideoCard key={video._id} {...video} />
+            <VideoCard key={video._id} video={video} />
           ))}
       </section>
     </div>

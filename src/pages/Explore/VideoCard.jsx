@@ -1,32 +1,45 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { MdOutlineWatchLater, MdPlaylistPlay } from "react-icons/md";
+import {
+  MdOutlineWatchLater,
+  MdPlaylistPlay,
+  MdWatchLater,
+} from "react-icons/md";
 
 import "./VideoCard.css";
+import { useWatchLater } from "../../context";
 
-const VideoCard = ({
-  _id,
-  thumbnail,
-  title,
-  creatorImg,
-  creator,
-  views,
-  date,
-}) => {
+const VideoCard = ({ video }) => {
+  const { _id, thumbnail, title, creatorImg, creator, views, date } = video;
+
   const navigate = useNavigate();
   const cardClickHandler = (e) => {
-    !(e.target.tagName == "svg") && navigate(`/video/${_id}`);
+    !(e.target.tagName == "svg") &&
+      !(e.target.tagName == "path") &&
+      navigate(`/video/${_id}`);
   };
+
+  const { watchLaterVideos, removeFromWatchLater, addToWatchLater } =
+    useWatchLater();
+
+  let isVideoInWatchLater = watchLaterVideos.some((item) => item._id == _id);
 
   return (
     <article onClick={cardClickHandler} className="video-card">
       <div className="img-wrapper">
         <img className="responsive-img" src={thumbnail} alt={title} />
         <div className="cta-wrapper">
-          <button className="btn">
-            <MdOutlineWatchLater />
-            <span className="info">Watch Later</span>
-          </button>
+          {isVideoInWatchLater ? (
+            <button onClick={() => removeFromWatchLater(_id)} className="btn">
+              <MdWatchLater />
+              <span className="info ">watch later</span>
+            </button>
+          ) : (
+            <button onClick={() => addToWatchLater(video)} className="btn">
+              <MdOutlineWatchLater />
+              <span className="info"> Watch later</span>
+            </button>
+          )}
           <button className="btn">
             <MdPlaylistPlay />
             <span className="info">Playlist</span>

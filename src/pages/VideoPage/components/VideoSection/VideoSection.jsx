@@ -38,14 +38,10 @@ const VideoSection = () => {
   }, [response]);
 
   if (video) {
-    let indexForLikedVideo = likedVideoList.findIndex(
+    isVideoInLikes = likedVideoList.some((item) => item._id == video._id);
+    isVideoInWatchLater = watchLaterVideos.some(
       (item) => item._id == video._id
     );
-    let indexForWatchLaterVideo = watchLaterVideos.findIndex(
-      (item) => item._id == video._id
-    );
-    isVideoInLikes = indexForLikedVideo == -1 ? false : true;
-    isVideoInWatchLater = indexForWatchLaterVideo == -1 ? false : true;
   }
 
   return video ? (

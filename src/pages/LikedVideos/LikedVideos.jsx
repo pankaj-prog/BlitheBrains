@@ -35,7 +35,11 @@ const LikedVideos = () => {
       <div className="videos-wrapper">
         {likedVideoList.length > 0 ? (
           likedVideoList.map((video) => (
-            <VideoCardHorizontal key={video._id} {...video} cardType={"like"} />
+            <VideoCardHorizontal
+              key={video._id}
+              video={video}
+              cardType={"like"}
+            />
           ))
         ) : (
           <div className="text-center">

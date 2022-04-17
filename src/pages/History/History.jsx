@@ -16,7 +16,7 @@ const History = () => {
         {videos.map((video) => (
           <VideoCardHorizontal
             key={video._id}
-            {...video}
+            video={video}
             cardType={"history"}
           />
         ))}

@@ -14,7 +14,7 @@ const VideoPage = () => {
         <h2 className="heading text-center gutter-bottom-24">Related Videos</h2>
         <div className="videos-wrapper">
           {videos.map((video) => (
-            <VideoCardHorizontal key={`${video._id}vs`} {...video} />
+            <VideoCardHorizontal key={video._id} video={video} />
           ))}
         </div>
       </section>

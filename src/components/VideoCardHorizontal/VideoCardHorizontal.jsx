@@ -10,17 +10,17 @@ import {
 import { HiDotsVertical } from "react-icons/hi";
 import { useLikedVideos, useWatchLater } from "../../context";
 
-const VideoCardHorizontal = ({
-  _id,
-  thumbnail,
-  title,
-  views,
-  date,
-  creator,
-  creatorImg,
-  description,
-  cardType,
-}) => {
+const VideoCardHorizontal = ({ video, cardType }) => {
+  const {
+    _id,
+    thumbnail,
+    title,
+    views,
+    date,
+    creator,
+    creatorImg,
+    description,
+  } = video;
   const navigate = useNavigate();
 
   const { watchLaterVideos, removeFromWatchLater, addToWatchLater } =
@@ -38,8 +38,7 @@ const VideoCardHorizontal = ({
     return navigate(`/video/${_id}`);
   };
 
-  let isVideoInWatchLater =
-    watchLaterVideos.findIndex((item) => item._id == _id) == -1 ? false : true;
+  let isVideoInWatchLater = watchLaterVideos.some((item) => item._id == _id);
 
   return (
     <article

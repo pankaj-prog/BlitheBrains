@@ -35,7 +35,7 @@ const WatchLater = () => {
       <div className="videos-wrapper">
         {watchLaterVideos.length > 0 ? (
           watchLaterVideos.map((video) => (
-            <VideoCardHorizontal key={video._id} {...video} />
+            <VideoCardHorizontal key={video._id} video={video} />
           ))
         ) : (
           <div className="text-center">
