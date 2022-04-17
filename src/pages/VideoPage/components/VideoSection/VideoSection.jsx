@@ -13,10 +13,7 @@ import { useAxios } from "../../../../utils/useAxios";
 
 import "./VideoSection.css";
 
-const VideoSection = () => {
-  const { videoId } = useParams();
-  const { makeRequest, response } = useAxios();
-  const [video, setVideo] = useState();
+const VideoSection = ({ video }) => {
   const { likeVideoHandler, likedVideoList, dislikeVideoHandler } =
     useLikedVideos();
   const { addToWatchLater, removeFromWatchLater, watchLaterVideos } =
@@ -25,19 +22,6 @@ const VideoSection = () => {
 
   let isVideoInLikes = false;
   let isVideoInWatchLater = false;
-
-  useEffect(() => {
-    makeRequest({
-      method: "get",
-      url: `/api/video/${videoId}`,
-    });
-  }, [videoId]);
-
-  useEffect(() => {
-    if (response) {
-      setVideo(response.video);
-    }
-  }, [response]);
 
   if (video) {
     isVideoInLikes = likedVideoList.some((item) => item._id == video._id);
