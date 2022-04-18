@@ -13,6 +13,8 @@ import {
   useLikedVideos,
   useWatchLater,
   usePlaylist,
+  useAuth,
+  useAlert,
 } from "../../../../context";
 import { useAxios } from "../../../../utils/useAxios";
 
@@ -25,6 +27,8 @@ const VideoSection = ({ video }) => {
     useWatchLater();
   const { addToHistory } = useHistory();
   const { setCurrentVideo, setShowPlaylistModal } = usePlaylist();
+  const { isLoggedIn } = useAuth();
+  const { showAlert } = useAlert();
 
   let isVideoInLikes = false;
   let isVideoInWatchLater = false;
