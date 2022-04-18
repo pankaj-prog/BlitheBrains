@@ -1,0 +1,49 @@
+.modal-wrapper-active {
+  display: flex;
+}
+
+.modal-wrapper-active.modal-form {
+  z-index: 3;
+}
+
+.modal {
+  min-width: 18rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+}
+
+.modal .input-container {
+  border-radius: 8px;
+  border: 1px solid var(--COLOR-SECONDARY-V3);
+}
+
+.modal input {
+  display: inline-block;
+  width: 100%;
+  outline: thin transparent;
+  border: none;
+}
+
+.modal .playlist-item {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid var(--COLOR-SECONDARY-V3);
+  padding: 0.5rem;
+}
+
+.modal .playlist-item input {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.modal .input-container {
+  padding: 0.5rem;
+}

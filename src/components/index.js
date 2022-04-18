@@ -7,4 +7,5 @@ export { default as VideoCardHorizontal } from "./VideoCardHorizontal/VideoCardH
 export { default as RouteWithNavbar } from "./RouteWithNavbar/RouteWithNavbar";
 export { default as AlertContainer } from "./Alert/AlertContainer";
 export { default as ScrollToTopButton } from "./ScrollToTopButton/ScrollToTopButton";
-export { default as ScrollToTop } from "./ScrollToTop/ScrollToTop";
+export { default as PlaylistModal } from "./PlaylistModal/PlaylistModal";
+export { default as PlaylistFormModal } from "./PlaylistModal/PlaylistFormModal";

@@ -8,7 +8,12 @@ import {
   MdPlaylistPlay,
 } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
-import { useHistory, useLikedVideos, useWatchLater } from "../../context";
+import {
+  useHistory,
+  useLikedVideos,
+  usePlaylist,
+  useWatchLater,
+} from "../../context";
 
 const VideoCardHorizontal = ({ video, cardType }) => {
   const {
@@ -27,6 +32,7 @@ const VideoCardHorizontal = ({ video, cardType }) => {
     useWatchLater();
   const { dislikeVideoHandler } = useLikedVideos();
   const { removeFromHistory } = useHistory();
+  const { setShowPlaylistModal, setCurrentVideo } = usePlaylist();
 
   const cardClickHandler = (e) => {
     if (
@@ -94,7 +100,13 @@ const VideoCardHorizontal = ({ video, cardType }) => {
             </button>
           )}
 
-          <button className="btn stop-navigate">
+          <button
+            onClick={() => {
+              setCurrentVideo(video);
+              setShowPlaylistModal(true);
+            }}
+            className="btn stop-navigate"
+          >
             <MdPlaylistPlay />
             <span className="info stop-navigate">Playlist</span>
           </button>
