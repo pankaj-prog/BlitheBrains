@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 
 import "./VideoCard.css";
-import { useWatchLater } from "../../context";
+import { usePlaylist, useWatchLater } from "../../context";
 
 const VideoCard = ({ video }) => {
   const { _id, thumbnail, title, creatorImg, creator, views, date } = video;
@@ -21,6 +21,7 @@ const VideoCard = ({ video }) => {
 
   const { watchLaterVideos, removeFromWatchLater, addToWatchLater } =
     useWatchLater();
+  const { setShowPlaylistModal, setCurrentVideo } = usePlaylist();
 
   let isVideoInWatchLater = watchLaterVideos.some((item) => item._id == _id);
 
@@ -40,7 +41,13 @@ const VideoCard = ({ video }) => {
               <span className="info"> Watch later</span>
             </button>
           )}
-          <button className="btn">
+          <button
+            onClick={() => {
+              setCurrentVideo(video);
+              setShowPlaylistModal(true);
+            }}
+            className="btn"
+          >
             <MdPlaylistPlay />
             <span className="info">Playlist</span>
           </button>

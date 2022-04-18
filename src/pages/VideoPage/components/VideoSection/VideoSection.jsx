@@ -8,7 +8,12 @@ import {
   MdPlaylistPlay,
 } from "react-icons/md";
 import { useParams } from "react-router-dom";
-import { useHistory, useLikedVideos, useWatchLater } from "../../../../context";
+import {
+  useHistory,
+  useLikedVideos,
+  useWatchLater,
+  usePlaylist,
+} from "../../../../context";
 import { useAxios } from "../../../../utils/useAxios";
 
 import "./VideoSection.css";
@@ -19,6 +24,7 @@ const VideoSection = ({ video }) => {
   const { addToWatchLater, removeFromWatchLater, watchLaterVideos } =
     useWatchLater();
   const { addToHistory } = useHistory();
+  const { setCurrentVideo, setShowPlaylistModal } = usePlaylist();
 
   let isVideoInLikes = false;
   let isVideoInWatchLater = false;
@@ -79,7 +85,13 @@ const VideoSection = ({ video }) => {
               <MdOutlineWatchLater />
             </button>
           )}
-          <button className="btn btn-rc playlist-btn-wrapper">
+          <button
+            onClick={() => {
+              setCurrentVideo(video);
+              setShowPlaylistModal(true);
+            }}
+            className="btn btn-rc playlist-btn-wrapper"
+          >
             <MdPlaylistPlay />
             <span className="btn-info">Save</span>
           </button>
