@@ -9,6 +9,8 @@ import {
 } from "react-icons/md";
 import { HiDotsVertical } from "react-icons/hi";
 import {
+  useAlert,
+  useAuth,
   useHistory,
   useLikedVideos,
   usePlaylist,
@@ -33,6 +35,8 @@ const VideoCardHorizontal = ({ video, cardType }) => {
   const { dislikeVideoHandler } = useLikedVideos();
   const { removeFromHistory } = useHistory();
   const { setShowPlaylistModal, setCurrentVideo } = usePlaylist();
+  const { isLoggedIn } = useAuth();
+  const { showAlert } = useAlert();
 
   const cardClickHandler = (e) => {
     if (
@@ -44,6 +48,15 @@ const VideoCardHorizontal = ({ video, cardType }) => {
     }
     window.scrollTo(0, 0);
     navigate(`/video/${_id}`);
+  };
+
+  const playlistHandler = () => {
+    if (isLoggedIn) {
+      setCurrentVideo(video);
+      setShowPlaylistModal(true);
+    } else {
+      showAlert("you must login first", "error");
+    }
   };
 
   let isVideoInWatchLater = watchLaterVideos.some((item) => item._id == _id);
@@ -100,13 +113,7 @@ const VideoCardHorizontal = ({ video, cardType }) => {
             </button>
           )}
 
-          <button
-            onClick={() => {
-              setCurrentVideo(video);
-              setShowPlaylistModal(true);
-            }}
-            className="btn stop-navigate"
-          >
+          <button onClick={playlistHandler} className="btn stop-navigate">
             <MdPlaylistPlay />
             <span className="info stop-navigate">Playlist</span>
           </button>

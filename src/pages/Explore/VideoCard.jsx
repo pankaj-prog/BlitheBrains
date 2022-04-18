@@ -19,6 +19,15 @@ const VideoCard = ({ video }) => {
       navigate(`/video/${_id}`);
   };
 
+  const playlistHandler = () => {
+    if (isLoggedIn) {
+      setCurrentVideo(video);
+      setShowPlaylistModal(true);
+    } else {
+      showAlert("you must login first", "error");
+    }
+  };
+
   const { watchLaterVideos, removeFromWatchLater, addToWatchLater } =
     useWatchLater();
   const { setShowPlaylistModal, setCurrentVideo } = usePlaylist();
@@ -41,13 +50,7 @@ const VideoCard = ({ video }) => {
               <span className="info"> Watch later</span>
             </button>
           )}
-          <button
-            onClick={() => {
-              setCurrentVideo(video);
-              setShowPlaylistModal(true);
-            }}
-            className="btn"
-          >
+          <button onClick={playlistHandler} className="btn">
             <MdPlaylistPlay />
             <span className="info">Playlist</span>
           </button>

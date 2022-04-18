@@ -36,6 +36,15 @@ const VideoSection = ({ video }) => {
     );
   }
 
+  const playlistHandler = () => {
+    if (isLoggedIn) {
+      setCurrentVideo(video);
+      setShowPlaylistModal(true);
+    } else {
+      showAlert("you must login first", "error");
+    }
+  };
+
   return video ? (
     <div className="video-section gutter-bottom-24">
       <section className="video-wrapper gutter-bottom-16">
@@ -86,10 +95,7 @@ const VideoSection = ({ video }) => {
             </button>
           )}
           <button
-            onClick={() => {
-              setCurrentVideo(video);
-              setShowPlaylistModal(true);
-            }}
+            onClick={playlistHandler}
             className="btn btn-rc playlist-btn-wrapper"
           >
             <MdPlaylistPlay />
