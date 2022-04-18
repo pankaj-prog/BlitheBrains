@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 
 import "./VideoCard.css";
-import { useWatchLater } from "../../context";
+import { useAlert, useAuth, usePlaylist, useWatchLater } from "../../context";
 
 const VideoCard = ({ video }) => {
   const { _id, thumbnail, title, creatorImg, creator, views, date } = video;
@@ -18,9 +18,20 @@ const VideoCard = ({ video }) => {
       !(e.target.tagName == "path") &&
       navigate(`/video/${_id}`);
   };
+  const { isLoggedIn } = useAuth();
+  const { showAlert } = useAlert();
+  const playlistHandler = () => {
+    if (isLoggedIn) {
+      setCurrentVideo(video);
+      setShowPlaylistModal(true);
+    } else {
+      showAlert("you must login first", "error");
+    }
+  };
 
   const { watchLaterVideos, removeFromWatchLater, addToWatchLater } =
     useWatchLater();
+  const { setShowPlaylistModal, setCurrentVideo } = usePlaylist();
 
   let isVideoInWatchLater = watchLaterVideos.some((item) => item._id == _id);
 
@@ -40,7 +51,7 @@ const VideoCard = ({ video }) => {
               <span className="info"> Watch later</span>
             </button>
           )}
-          <button className="btn">
+          <button onClick={playlistHandler} className="btn">
             <MdPlaylistPlay />
             <span className="info">Playlist</span>
           </button>

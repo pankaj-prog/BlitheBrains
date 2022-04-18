@@ -6,11 +6,13 @@ import "./VideoPage.css";
 import { VideoCardHorizontal } from "../../components";
 import { useAxios } from "../../utils/useAxios";
 import { useParams } from "react-router-dom";
+import { usePlaylist } from "../../context";
 
 const VideoPage = () => {
   const { videoId } = useParams();
   const [video, setVideo] = useState();
   const { makeRequest: videoRequest, response: videoResponse } = useAxios();
+  const { setCurrentVideo, setShowPlaylistModal } = usePlaylist();
 
   useEffect(() => {
     videoRequest({

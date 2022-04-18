@@ -1,66 +1,87 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Playlist.css";
 import { videos } from "../../backend/db/videos";
 import { Banner, VideoCardHorizontal } from "../../components";
-
-const playlists = [
-  {
-    _id: "a1",
-    title: "Playlist1",
-    description:
-      "Lorem ipsum dolor sit a consectetur adipisicing elit amet pariatur iste.",
-  },
-  {
-    _id: "a2",
-    title: "Playlist2",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-  {
-    _id: "a3",
-    title: "Playlist3",
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-  },
-];
+import { usePlaylist } from "../../context";
 
 const Playlist = () => {
+  const { playlistList, deletePlaylist, setShowPlaylistFormModal } =
+    usePlaylist();
+
+  const [selectedPlaylistIndex, setSelectedPlaylistIndex] = useState();
+
+  let selectedPlaylist;
+  if (selectedPlaylistIndex) {
+    selectedPlaylist = [
+      ...playlistList.filter(
+        (playlist) => playlist._id == selectedPlaylistIndex
+      ),
+    ][0];
+  }
+
   return (
     <div className=" content">
       <Banner title="Playlists" />
       <p className="text-center">
-        <button className="btn btn-solid-primary btn-rc gutter-bottom-24">
+        <button
+          onClick={() => setShowPlaylistFormModal(true)}
+          className="btn btn-solid-primary btn-rc gutter-bottom-24"
+        >
           Create new playlist
         </button>
       </p>
-      <div className="playlist-page">
-        <section className="playlist-wrapper">
-          {playlists.map((playlist) => {
-            return (
-              <div key={playlist._id} className="text-center">
-                <h4
-                  className={`playlist-title ${
-                    playlist._id == "a2" && "playlist-active-title"
-                  }`}
-                >
-                  {playlist.title}
-                </h4>
-                {/* for now a2 is the selected playlist */}
-                {playlist._id == "a2" && (
-                  <p className="playlist-description">{playlist.description}</p>
-                )}
-              </div>
-            );
-          })}
-        </section>
-        <section className="playlist-videos">
-          {videos.map((video) => (
-            <VideoCardHorizontal
-              key={video._id}
-              video={video}
-              cardType="playlist"
-            />
-          ))}
-        </section>
-      </div>
+      {playlistList.length > 0 ? (
+        <div className="playlist-page">
+          <section className="playlist-wrapper">
+            {playlistList.map((playlist) => {
+              return (
+                <div key={playlist._id} className="text-center">
+                  <h4
+                    onClick={() => setSelectedPlaylistIndex(playlist._id)}
+                    className={`playlist-title ${
+                      playlist._id == selectedPlaylistIndex &&
+                      "playlist-active-title"
+                    }`}
+                  >
+                    {playlist.title}
+                  </h4>
+                  {/* for now a2 is the selected playlist */}
+                  {playlist._id == selectedPlaylistIndex && (
+                    <p className="playlist-description">
+                      <p>{playlist.description}</p>
+                      <button
+                        onClick={() => deletePlaylist(playlist)}
+                        className="btn btn-solid-primary btn-rc"
+                      >
+                        Delete
+                      </button>
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </section>
+          <section className="playlist-videos">
+            {selectedPlaylist ? (
+              selectedPlaylist.videos.length > 0 ? (
+                selectedPlaylist.videos.map((video) => (
+                  <VideoCardHorizontal
+                    key={video._id}
+                    video={video}
+                    cardType="playlist"
+                  />
+                ))
+              ) : (
+                <p className="h4">Add videos to playlist to see them here.</p>
+              )
+            ) : (
+              <p className="h4">Playlist is not selected</p>
+            )}
+          </section>
+        </div>
+      ) : (
+        <p className="text-center h4">Create playlists to see here</p>
+      )}
     </div>
   );
 };

@@ -6,7 +6,8 @@ import {
   RouteWithNavbar,
   AlertContainer,
   ScrollToTopButton,
-  ScrollToTop,
+  PlaylistModal,
+  PlaylistFormModal,
 } from "./components/";
 import Mockman from "mockman-js";
 
@@ -35,7 +36,6 @@ function App() {
 
   return (
     <>
-      <ScrollToTop />
       <Routes>
         <Route element={<RoutesWithSidebar />}>
           <Route path="/home" element={<Home />} />
@@ -59,6 +59,8 @@ function App() {
       </Routes>
       <AlertContainer />
       <ScrollToTopButton />
+      <PlaylistModal />
+      <PlaylistFormModal />
     </>
   );
 }

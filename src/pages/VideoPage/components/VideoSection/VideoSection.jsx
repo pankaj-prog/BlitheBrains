@@ -8,7 +8,14 @@ import {
   MdPlaylistPlay,
 } from "react-icons/md";
 import { useParams } from "react-router-dom";
-import { useHistory, useLikedVideos, useWatchLater } from "../../../../context";
+import {
+  useHistory,
+  useLikedVideos,
+  useWatchLater,
+  usePlaylist,
+  useAuth,
+  useAlert,
+} from "../../../../context";
 import { useAxios } from "../../../../utils/useAxios";
 
 import "./VideoSection.css";
@@ -19,6 +26,9 @@ const VideoSection = ({ video }) => {
   const { addToWatchLater, removeFromWatchLater, watchLaterVideos } =
     useWatchLater();
   const { addToHistory } = useHistory();
+  const { setCurrentVideo, setShowPlaylistModal } = usePlaylist();
+  const { isLoggedIn } = useAuth();
+  const { showAlert } = useAlert();
 
   let isVideoInLikes = false;
   let isVideoInWatchLater = false;
@@ -29,6 +39,15 @@ const VideoSection = ({ video }) => {
       (item) => item._id == video._id
     );
   }
+
+  const playlistHandler = () => {
+    if (isLoggedIn) {
+      setCurrentVideo(video);
+      setShowPlaylistModal(true);
+    } else {
+      showAlert("you must login first", "error");
+    }
+  };
 
   return video ? (
     <div className="video-section gutter-bottom-24">
@@ -79,7 +98,10 @@ const VideoSection = ({ video }) => {
               <MdOutlineWatchLater />
             </button>
           )}
-          <button className="btn btn-rc playlist-btn-wrapper">
+          <button
+            onClick={playlistHandler}
+            className="btn btn-rc playlist-btn-wrapper"
+          >
             <MdPlaylistPlay />
             <span className="btn-info">Save</span>
           </button>
