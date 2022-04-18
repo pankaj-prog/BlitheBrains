@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 
 import "./VideoCard.css";
-import { usePlaylist, useWatchLater } from "../../context";
+import { useAlert, useAuth, usePlaylist, useWatchLater } from "../../context";
 
 const VideoCard = ({ video }) => {
   const { _id, thumbnail, title, creatorImg, creator, views, date } = video;
@@ -18,7 +18,8 @@ const VideoCard = ({ video }) => {
       !(e.target.tagName == "path") &&
       navigate(`/video/${_id}`);
   };
-
+  const { isLoggedIn } = useAuth();
+  const { showAlert } = useAlert();
   const playlistHandler = () => {
     if (isLoggedIn) {
       setCurrentVideo(video);
